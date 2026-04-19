@@ -1,109 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Ibadan Property Platform</title>
-    <style>
-        body {
-            font-family: Arial;
-            background: #f5f7fa;
-            margin: 0;
-        }
-        header {
-            background: #0d6efd;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-        .container {
-            padding: 20px;
-        }
-        .card {
-            background: white;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        button {
-            background: #0d6efd;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background: #0b5ed7;
-        }
-        #details {
-            display: none;
-        }
-        #success {
-            display: none;
-            background: #d1e7dd;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibadan Property Platform</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: #f4f6f9;
+}
+
+header {
+    background: #111827;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    padding: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.price {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1e40af;
+}
+
+#details {
+    display: none;
+}
+
+.badge {
+    background: #e5e7eb;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+</style>
 </head>
+
 <body>
 
 <header>
-    <h2>Ibadan Property Inspection Platform</h2>
+    <h2>🏠 Ibadan Property Platform</h2>
+    <p>Find & Book Property Inspections Easily</p>
 </header>
 
 <div class="container">
 
-    <div id="listings">
-        <h3>Available Properties</h3>
+<div id="listings">
+    <h3>Available Properties</h3>
+
+    <div class="grid">
 
         <div class="card">
-            <h4>2 Bedroom Apartment - Bodija</h4>
-            <p>₦800,000/year</p>
-            <button onclick="viewDetails('Bodija Apartment')">View Details</button>
+            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994">
+            <div class="card-body">
+                <h4>2 Bedroom Apartment</h4>
+                <p class="price">₦800,000/year</p>
+                <p><span class="badge">Bodija</span> • Agent: Tunde</p>
+                <button onclick="viewDetails('Bodija Apartment')">View Details</button>
+            </div>
         </div>
 
         <div class="card">
-            <h4>Self Contain - Akobo</h4>
-            <p>₦300,000/year</p>
-            <button onclick="viewDetails('Akobo Self Contain')">View Details</button>
+            <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c">
+            <div class="card-body">
+                <h4>Self Contain</h4>
+                <p class="price">₦300,000/year</p>
+                <p><span class="badge">Akobo</span> • Agent: Sola</p>
+                <button onclick="viewDetails('Akobo Self Contain')">View Details</button>
+            </div>
         </div>
 
     </div>
+</div>
 
-    <div id="details">
-        <h3 id="propertyTitle"></h3>
-        <p>Well-furnished property with good road and security.</p>
+<div id="details">
+    <h2 id="title"></h2>
+    <p>Spacious property with good road, water supply and security.</p>
 
-        <button onclick="book()">Request Inspection</button>
-
-        <div id="success">
-            ✅ Inspection request submitted successfully!
-        </div>
-
-        <br><br>
-        <button onclick="goBack()">← Back</button>
-    </div>
+    <button onclick="book()">Request Inspection</button>
+    <button onclick="goBack()" style="background:#6b7280;">Back</button>
+</div>
 
 </div>
 
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h3>✅ Booking Sent!</h3>
+        <p>The agent will contact you shortly.</p>
+        <button onclick="closeModal()">Close</button>
+    </div>
+</div>
+
 <script>
-    function viewDetails(name) {
-        document.getElementById('listings').style.display = 'none';
-        document.getElementById('details').style.display = 'block';
-        document.getElementById('propertyTitle').innerText = name;
-    }
+function viewDetails(name){
+    document.getElementById('listings').style.display='none';
+    document.getElementById('details').style.display='block';
+    document.getElementById('title').innerText=name;
+}
 
-    function goBack() {
-        document.getElementById('listings').style.display = 'block';
-        document.getElementById('details').style.display = 'none';
-    }
+function goBack(){
+    document.getElementById('listings').style.display='block';
+    document.getElementById('details').style.display='none';
+}
 
-    function book() {
-        document.getElementById('success').style.display = 'block';
-    }
+function book(){
+    document.getElementById('modal').style.display='flex';
+}
+
+function closeModal(){
+    document.getElementById('modal').style.display='none';
+}
 </script>
 
 </body>
