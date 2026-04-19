@@ -1,379 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MMB Link - Smart Life Easy Life</title>
-
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --logo-desktop-w: 180px;
-      --logo-mobile-w: 130px;
-    }
-
-    html, body { height:100%; }
-    body {
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      background: #f7fafc;
-      color: #1f2937;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-
-    /* Header */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid #e5e7eb;
-    }
-    .logo-img { width: var(--logo-desktop-w); height: auto; display:block; margin: 0 auto; }
-    @media (max-width:768px){ .logo-img{ width: var(--logo-mobile-w); } }
-
-    /* Reuse dark background for energy */
-    .dark-block { background: #111827; color: #f9fafb; }
-
-    /* product card tweaks (no animations) */
-    .product-card img { height: 16rem; width: 100%; object-fit: cover; display:block; }
-    .product-card { transition: none; }
-
-    /* modal */
-    #image-modal { 
-      position: fixed; inset: 0; display: none; z-index: 60;
-      background: rgba(0,0,0,0.85); align-items:center; justify-content:center; padding: 1rem;
-    }
-    #image-modal.show { display: flex; }
-    #image-modal .modal-inner { max-width: 1100px; max-height: 90vh; width: 100%; }
-    #image-modal img { width: 100%; height: auto; object-fit: contain; border-radius: 6px; display:block; }
-
-    /* footer logo blend */
-    .footer-logo {
-      width: 180px;
-      height: auto;
-      object-fit: contain;
-      mix-blend-mode: screen;
-      filter: brightness(0.9) contrast(1.15) opacity(0.95);
-      display:block;
-      margin: 0 auto;
-    }
-
-    /* small util */
-    .container-max { max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 16px; padding-right: 16px; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Ibadan Property Platform</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f7fa;
+            margin: 0;
+        }
+        header {
+            background: #0d6efd;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #0d6efd;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0b5ed7;
+        }
+        #details {
+            display: none;
+        }
+        #success {
+            display: none;
+            background: #d1e7dd;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="py-4">
-    <div class="container-max mx-auto text-center">
-      <img src="https://github.com/MMB-LINK/mmblink/blob/main/mmb.link%20logo.jpeg?raw=true" alt="MMB Link Logo" class="logo-img mb-2">
-      <nav class="flex justify-center space-x-6 font-semibold text-green-800">
-        <a href="#about">Home</a>
-        <a href="#products">Products</a>
-        <a href="#sustainable-energy">Energy</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+<header>
+    <h2>Ibadan Property Inspection Platform</h2>
+</header>
 
-  <!-- HERO -->
-  <section class="bg-gray-900 text-white py-20 text-center">
-    <div class="container-max mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-extrabold">Smart Life, Easy Life</h1>
-      <p class="mt-4 text-lg max-w-3xl mx-auto text-gray-300">
-        Innovative solutions for a sustainable future — blending clean energy, smart systems, and practical design to make life easier for everyone.
-      </p>
-      <a href="#products" class="mt-8 inline-block bg-white text-gray-900 font-semibold py-3 px-6 rounded-full hover:bg-gray-100">Discover Products</a>
-    </div>
-  </section>
+<div class="container">
 
-  <!-- ABOUT -->
-  <section id="about" class="py-12 container-max mx-auto px-4">
-    <div class="grid md:grid-cols-2 gap-8 items-center">
-      <div>
-        <h2 class="text-3xl font-bold mb-4">Our Mission & Vision</h2>
-        <p class="text-gray-600">
-          To make sustainable living simple, affordable, and stylish for every household. We build smart, reliable energy solutions that serve today’s needs while protecting tomorrow.
-        </p>
-      </div>
-     
-    </div>
-  </section>
+    <div id="listings">
+        <h3>Available Properties</h3>
 
-  <!-- SUSTAINABLE ENERGY (same dark as hero) -->
-  <section id="sustainable-energy" class="dark-block py-16 px-4">
-    <div class="container-max mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-4">Sustainable Energy</h2>
-      <p class="max-w-3xl mx-auto text-gray-300 mb-8">
-        At MMB Link, sustainability is our core. We design energy systems that combine innovation, affordability, and real-world reliability.
-      </p>
-
-      <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-6 text-left">
-        <div class="bg-gray-800 p-6 rounded-lg">
-          <div class="text-4xl mb-3">🌞</div>
-          <h4 class="text-xl font-semibold mb-2 text-green-200">Solar Power</h4>
-          <p class="text-gray-300 text-sm">High-efficiency panels and kits designed for reliability and long life in harsh climates.</p>
-        </div>
-        <div class="bg-gray-800 p-6 rounded-lg">
-          <div class="text-4xl mb-3">🌬️</div>
-          <h4 class="text-xl font-semibold mb-2 text-green-200">Wind Solutions</h4>
-          <p class="text-gray-300 text-sm">Modular wind options to complement solar, increasing uptime and resilience.</p>
-        </div>
-        <div class="bg-gray-800 p-6 rounded-lg">
-          <div class="text-4xl mb-3">⚙️</div>
-          <h4 class="text-xl font-semibold mb-2 text-green-200">Smart Systems</h4>
-          <p class="text-gray-300 text-sm">Energy management, remote monitoring, and smart switching to protect equipment and save energy.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section id="products" class="container-max mx-auto py-16 px-4">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Our Products</h2>
-
-    <!-- SOLAR GADGETS -->
-    <div class="mb-8">
-      <h3 class="text-2xl font-semibold mb-4 border-b pb-2">Solar Gadgets</h3>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Product: Super Power Solar Fan -->
-        <div class="bg-white rounded-xl shadow product-card overflow-hidden">
-          <button class="w-full text-left image-open" data-img="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/Model%20name%20Super%20Power%20mmb%20%E2%80%A2%20link%20Solar%20Fan.jpeg" aria-label="Open Super Power Fan image">
-            <img src="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/Model%20name%20Super%20Power%20mmb%20%E2%80%A2%20link%20Solar%20Fan.jpeg" alt="Super Power Solar Fan">
-          </button>
-          <div class="p-6">
-            <h4 class="text-xl font-semibold mb-2">Super Power mmb • link Solar Fan</h4>
-            <p class="text-sm text-gray-600 mb-3">A powerful, quiet, oscillating fan with USB and LED light features. AC/DC, 3-speed, auto sweep.</p>
-            <p class="font-bold text-green-700">₦9,999</p>
-            <button class="mt-4 w-full bg-green-700 text-white py-2 rounded order-btn"
-                    data-name="Super Power mmb • link Solar Fan"
-                    data-price="9999"
-                    aria-label="Order Super Power Solar Fan on WhatsApp">
-              Click to Order 
-            </button>
-          </div>
+        <div class="card">
+            <h4>2 Bedroom Apartment - Bodija</h4>
+            <p>₦800,000/year</p>
+            <button onclick="viewDetails('Bodija Apartment')">View Details</button>
         </div>
 
-        <!-- Product: Solar Power Generator 500W -->
-        <div class="bg-white rounded-xl shadow product-card overflow-hidden">
-          <button class="w-full text-left image-open" data-img="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/Solar%20power%20generator%20500W%20sine%20wave%20512%20watt-hour%20battery.jpeg" aria-label="Open Solar Generator 500W image">
-            <img src="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/Solar%20power%20generator%20500W%20sine%20wave%20512%20watt-hour%20battery.jpeg" alt="Solar Power Generator 500W">
-          </button>
-          <div class="p-6">
-            <h4 class="text-xl font-semibold mb-2">Solar Power Generator (500W)</h4>
-            <p class="text-sm text-gray-600 mb-3">Portable 500W sine-wave generator with 512Wh LiFePO4 battery for reliable clean power.</p>
-            <p class="font-bold text-green-700">₦9,999</p>
-            <button class="mt-4 w-full bg-green-700 text-white py-2 rounded order-btn"
-                    data-name="Solar Power Generator (500W)"
-                    data-price="9999"
-                    aria-label="Order Solar Power Generator on WhatsApp">
-              Click to Order 
-            </button>
-          </div>
+        <div class="card">
+            <h4>Self Contain - Akobo</h4>
+            <p>₦300,000/year</p>
+            <button onclick="viewDetails('Akobo Self Contain')">View Details</button>
         </div>
 
-        <!-- Product: Solar Power Generator 400W -->
-        <div class="bg-white rounded-xl shadow product-card overflow-hidden">
-          <button class="w-full text-left image-open" data-img="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/Solar%20power%20generator%20400W%20power%20supply%20384%20hours%20Battery.jpeg" aria-label="Open Solar Generator 400W image">
-            <img src="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/Solar%20power%20generator%20400W%20power%20supply%20384%20hours%20Battery.jpeg" alt="Solar Power Generator 400W">
-          </button>
-          <div class="p-6">
-            <h4 class="text-xl font-semibold mb-2">Solar Power Generator (400W)</h4>
-            <p class="text-sm text-gray-600 mb-3">400W generator with 384Wh battery — compact and efficient for daily use.</p>
-            <p class="font-bold text-green-700">₦9,999</p>
-            <button class="mt-4 w-full bg-green-700 text-white py-2 rounded order-btn"
-                    data-name="Solar Power Generator (400W)"
-                    data-price="9999"
-                    aria-label="Order Solar Power Generator 400W on WhatsApp">
-              Click to Order 
-            </button>
-          </div>
-        </div>
-
-        <!-- Product: 16.5 Kilowatt Lithium Battery -->
-        <div class="bg-white rounded-xl shadow product-card overflow-hidden">
-          <button class="w-full text-left image-open" data-img="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/165%20kilowatts%20lithium%20battery.jpeg" aria-label="Open 16.5 kilowatt battery image">
-            <img src="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/165%20kilowatts%20lithium%20battery.jpeg" alt="16.5 Kilowatt Lithium Battery">
-          </button>
-          <div class="p-6">
-            <h4 class="text-xl font-semibold mb-2">16.5 Kilowatt Lithium Battery</h4>
-            <p class="text-sm text-gray-600 mb-3">High-capacity 16500Wh LiFePO4 battery with touchscreen control and certification.</p>
-            <p class="font-bold text-green-700">₦9,999</p>
-            <button class="mt-4 w-full bg-green-700 text-white py-2 rounded order-btn"
-                    data-name="16.5 Kilowatt Lithium Battery"
-                    data-price="9999"
-                    aria-label="Order 16.5 Kilowatt Lithium Battery on WhatsApp">
-              Click to Order 
-            </button>
-          </div>
-        </div>
-
-        <!-- Product: 10KW Inverter -->
-        <div class="bg-white rounded-xl shadow product-card overflow-hidden">
-          <button class="w-full text-left image-open" data-img="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/10kw%20inverter%20AC%20DW.jpeg" aria-label="Open 10KW Inverter image">
-            <img src="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/10kw%20inverter%20AC%20DW.jpeg" alt="10KW Inverter">
-          </button>
-          <div class="p-6">
-            <h4 class="text-xl font-semibold mb-2">10KW Inverter</h4>
-            <p class="text-sm text-gray-600 mb-3">10KW inverter with MPPT support, RS232/RS485 comms — built for large-scale setups.</p>
-            <p class="font-bold text-green-700">₦9,999</p>
-            <button class="mt-4 w-full bg-green-700 text-white py-2 rounded order-btn"
-                    data-name="10KW Inverter"
-                    data-price="9999"
-                    aria-label="Order 10KW Inverter on WhatsApp">
-              Click to Order 
-            </button>
-          </div>
-        </div>
-
-        <!-- Product: Fan Cooler -->
-        <div class="bg-white rounded-xl shadow product-card overflow-hidden">
-          <button class="w-full text-left image-open" data-img="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/Model%20fan%20cooler.jpeg" aria-label="Open Fan Cooler image">
-            <img src="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/Model%20fan%20cooler.jpeg" alt="Fan Cooler">
-          </button>
-          <div class="p-6">
-            <h4 class="text-xl font-semibold mb-2">Fan Cooler</h4>
-            <p class="text-sm text-gray-600 mb-3">45W fan cooler, 80° oscillation, 9-hour timer, 8-speed options for comfort and efficiency.</p>
-            <p class="font-bold text-green-700">₦9,999</p>
-            <button class="mt-4 w-full bg-green-700 text-white py-2 rounded order-btn"
-                    data-name="Fan Cooler"
-                    data-price="9999"
-                    aria-label="Order Fan Cooler on WhatsApp">
-              Click to Order 
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <!-- BIKES -->
-    <div>
-      <h3 class="text-2xl font-semibold mt-12 mb-4 border-b pb-2">Bikes</h3>
+    <div id="details">
+        <h3 id="propertyTitle"></h3>
+        <p>Well-furnished property with good road and security.</p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- D100 Electric Bike -->
-        <div class="bg-white rounded-xl shadow product-card overflow-hidden">
-          <button class="w-full text-left image-open" data-img="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/Bike%20name%20D100.jpeg" aria-label="Open D100 Electric Bike image">
-            <img src="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/Bike%20name%20D100.jpeg" alt="D100 Electric Bike">
-          </button>
-          <div class="p-6">
-            <h4 class="text-xl font-semibold mb-2">D100 Electric Bike</h4>
-            <p class="text-sm text-gray-600 mb-3">1000W motor, 60V20AH battery, remote, cruise control and anti-theft alarm.</p>
-            <p class="font-bold text-green-700">₦9,999</p>
-            <button class="mt-4 w-full bg-green-700 text-white py-2 rounded order-btn"
-                    data-name="D100 Electric Bike"
-                    data-price="9999"
-                    aria-label="Order D100 Electric Bike on WhatsApp">
-              Click to Order 
-            </button>
-          </div>
+        <button onclick="book()">Request Inspection</button>
+
+        <div id="success">
+            ✅ Inspection request submitted successfully!
         </div>
 
-        <!-- D11 GT Electric Bike -->
-        <div class="bg-white rounded-xl shadow product-card overflow-hidden">
-          <button class="w-full text-left image-open" data-img="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/Bike%20name%20D11%20GT.jpeg" aria-label="Open D11 GT Electric Bike image">
-            <img src="https://raw.githubusercontent.com/RECRUIT-CONNECT-NIGLTD/mmblink/main/Bike%20name%20D11%20GT.jpeg" alt="D11 GT Electric Bike">
-          </button>
-          <div class="p-6">
-            <h4 class="text-xl font-semibold mb-2">D11 GT Electric Bike</h4>
-            <p class="text-sm text-gray-600 mb-3">1200W motor, 72V32AH battery, dual disc brakes — high performance and range.</p>
-            <p class="font-bold text-green-700">₦9,999</p>
-            <button class="mt-4 w-full bg-green-700 text-white py-2 rounded order-btn"
-                    data-name="D11 GT Electric Bike"
-                    data-price="9999"
-                    aria-label="Order D11 GT Electric Bike on WhatsApp">
-              Click to Order 
-            </button>
-          </div>
-        </div>
-      </div>
+        <br><br>
+        <button onclick="goBack()">← Back</button>
     </div>
-  </section>
 
-  <!-- IMAGE MODAL -->
-  <div id="image-modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-inner">
-      <button id="modal-close" class="text-white text-3xl mb-4" aria-label="Close image viewer">&times;</button>
-      <img id="modal-img" src="" alt="Product full image">
-    </div>
-  </div>
+</div>
 
-  <!-- FOOTER -->
-  <footer id="contact" class="bg-black text-gray-300 py-12">
-    <div class="container-max mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-      <div>
-        <img src="https://github.com/MMB-LINK/mmblink/blob/main/mmb%20link%20lgo.jpeg?raw=true" alt="MMB Link Logo" class="footer-logo mb-3">
-        <p class="text-sm">Driven toward a smart, easy life with innovative, sustainable solutions.</p>
-      </div>
-      <div>
-        <h3 class="text-white font-semibold mb-2">Quick Links</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
-          <li><a href="#" class="hover:text-white">Terms &amp; Conditions</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-white font-semibold mb-2">Contact</h3>
-        <p class="text-sm">Phone: <a href="tel:+2349071198792" class="hover:text-white">+234 907 119 8792</a></p>
-        <p class="text-sm">Email: <a href="mailto:mmblink.ng@gmail.com" class="hover:text-white">mmblink.ng@gmail.com</a></p>
-      </div>
-    </div>
-    <div class="text-center mt-8 text-gray-500 text-sm">
-      &copy; 2025 MMB Link. All rights reserved.
-    </div>
-  </footer>
+<script>
+    function viewDetails(name) {
+        document.getElementById('listings').style.display = 'none';
+        document.getElementById('details').style.display = 'block';
+        document.getElementById('propertyTitle').innerText = name;
+    }
 
-  <!-- SMALL JS: modal + whatsapp order -->
-  <script>
-    (function(){
-      const WHATSAPP = '2349071198792';
+    function goBack() {
+        document.getElementById('listings').style.display = 'block';
+        document.getElementById('details').style.display = 'none';
+    }
 
-      // Open image modal
-      const modal = document.getElementById('image-modal');
-      const modalImg = document.getElementById('modal-img');
-      const modalClose = document.getElementById('modal-close');
+    function book() {
+        document.getElementById('success').style.display = 'block';
+    }
+</script>
 
-      document.querySelectorAll('.image-open').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const src = btn.getAttribute('data-img');
-          modalImg.src = src || '';
-          modal.classList.add('show');
-          modal.setAttribute('aria-hidden', 'false');
-        });
-      });
-
-      modalClose.addEventListener('click', closeModal);
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-      });
-      function closeModal(){
-        modal.classList.remove('show');
-        modal.setAttribute('aria-hidden', 'true');
-        modalImg.src = '';
-      }
-
-      // WhatsApp order buttons (prefill message)
-      document.querySelectorAll('.order-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const name = btn.getAttribute('data-name') || 'Product';
-          const price = btn.getAttribute('data-price') || '';
-          const message = `Hello MMB Link, I’d like to order the product: *${name}*. Listed price: ₦${Number(price).toLocaleString('en-NG')}. Please confirm availability and total cost.`;
-          const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
-          window.open(url, '_blank');
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
