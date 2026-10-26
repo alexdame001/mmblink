@@ -79,7 +79,7 @@
     <div class="bg-brand-greendark text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex justify-between items-center max-w-full overflow-hidden">
         <div class="mx-auto flex items-center space-x-3">
             <span class="bg-brand-gold text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-widest shadow-sm">B2B & Retail</span>
-            <span class="text-amber-100">Pure, fresh & hygienic Akamu/Ogi • Free delivery on bulk B2B orders over 50kg!</span>
+            <span class="text-amber-100">Pure, fresh & hygienic Akamu/Ogi • Order direct via WhatsApp: <a href="https://wa.me/2347060432373" target="_blank" class="underline font-bold hover:text-brand-gold">+234 706 043 2373</a></span>
         </div>
         <button onclick="this.parentElement.style.display='none'" class="text-gray-400 hover:text-white hidden md:block">
             <i class="fa-solid fa-xmark"></i>
@@ -511,17 +511,17 @@
                     <!-- B2B Inquiry Form -->
                     <div class="lg:col-span-6 bg-white text-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl">
                         <h3 class="font-serif text-2xl font-bold text-brand-greendark">Request Wholesale Bulk Quote</h3>
-                        <p class="text-xs text-gray-500 mb-6">Complete the form below and our commercial sales team will reach out within 2 hours.</p>
+                        <p class="text-xs text-gray-500 mb-6">Complete the form below to send your wholesale request straight to our WhatsApp sales desk.</p>
 
                         <form id="b2bForm" onsubmit="handleB2BSubmit(event)" class="space-y-4">
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-gray-700 mb-1">Business Name *</label>
-                                    <input type="text" required placeholder="e.g. Royal Crown Hotel" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm">
+                                    <input id="b2bBusinessName" type="text" required placeholder="e.g. Royal Crown Hotel" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-gray-700 mb-1">Business Category *</label>
-                                    <select required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm bg-white">
+                                    <select id="b2bCategory" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm bg-white">
                                         <option value="">Select Category</option>
                                         <option value="Restaurant / Eatery">Restaurant / Eatery</option>
                                         <option value="Hotel / Resort">Hotel / Resort</option>
@@ -535,7 +535,7 @@
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-gray-700 mb-1">Estimated Weekly Volume *</label>
-                                    <select required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm bg-white">
+                                    <select id="b2bVolume" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm bg-white">
                                         <option value="">Select Estimated Volume</option>
                                         <option value="25kg - 50kg">25kg - 50kg per week</option>
                                         <option value="50kg - 150kg">50kg - 150kg per week</option>
@@ -545,29 +545,29 @@
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-gray-700 mb-1">Contact Person *</label>
-                                    <input type="text" required placeholder="Full Name" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm">
+                                    <input id="b2bContactPerson" type="text" required placeholder="Full Name" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm">
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-xs font-bold text-gray-700 mb-1">Phone / WhatsApp *</label>
-                                    <input type="tel" required placeholder="+234 800 000 0000" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm">
+                                    <input id="b2bPhone" type="tel" required placeholder="07060432373" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold text-gray-700 mb-1">Work Email *</label>
-                                    <input type="email" required placeholder="procurement@company.com" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm">
+                                    <input id="b2bEmail" type="email" required placeholder="procurement@company.com" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm">
                                 </div>
                             </div>
 
                             <div>
                                 <label class="block text-xs font-bold text-gray-700 mb-1">Delivery Location & Special Requirements</label>
-                                <textarea rows="3" placeholder="Specify preferred delivery times, custom packaging sizes, etc." class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm"></textarea>
+                                <textarea id="b2bNotes" rows="3" placeholder="Specify preferred delivery times, custom packaging sizes, etc." class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm"></textarea>
                             </div>
 
-                            <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-gold text-white font-extrabold text-base hover:bg-brand-golddark shadow-lg transition-all flex items-center justify-center space-x-2">
-                                <i class="fa-solid fa-paper-plane"></i>
-                                <span>Submit Wholesale Quote Request</span>
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-base shadow-lg transition-all flex items-center justify-center space-x-2">
+                                <i class="fa-brands fa-whatsapp text-xl"></i>
+                                <span>Send B2B Request via WhatsApp</span>
                             </button>
                         </form>
                     </div>
@@ -705,7 +705,7 @@
                 <div class="lg:col-span-5 space-y-6">
                     <span class="text-brand-gold font-bold text-xs uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">Get In Touch</span>
                     <h2 class="font-serif text-3xl font-extrabold text-brand-greendark">We’re Here to Serve You</h2>
-                    <p class="text-gray-600 text-sm">Have questions about retail orders, bulk supply schedules, or custom processing? Reach out to our team.</p>
+                    <p class="text-gray-600 text-sm">Have questions about retail orders, bulk supply schedules, or custom processing? Reach out to our team via phone or WhatsApp.</p>
 
                     <div class="space-y-4 pt-4">
                         <div class="flex items-start space-x-4">
@@ -720,12 +720,12 @@
 
                         <div class="flex items-start space-x-4">
                             <div class="w-10 h-10 rounded-full bg-emerald-100 text-brand-green flex items-center justify-center flex-shrink-0">
-                                <i class="fa-solid fa-phone"></i>
+                                <i class="fa-brands fa-whatsapp"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-gray-800 text-sm">Customer Care & Wholesale Line</h3>
-                                <p class="text-xs text-gray-600">+234 (0) 800-NOURISH (668-7474)</p>
-                                <p class="text-xs text-gray-600">+234 (0) 812 345 6789</p>
+                                <h3 class="font-bold text-gray-800 text-sm">Direct Phone & WhatsApp Line</h3>
+                                <a href="https://wa.me/2347060432373" target="_blank" class="text-xs font-bold text-brand-green hover:underline block">+234 706 043 2373</a>
+                                <span class="text-xs text-gray-500">Available 8 AM - 7 PM Daily</span>
                             </div>
                         </div>
 
@@ -898,7 +898,7 @@
     <!-- ========================================== -->
     <!-- FLOATING WHATSAPP QUICK CHAT WIDGET -->
     <!-- ========================================== -->
-    <a href="https://wa.me/2348123456789?text=Hello%20Nourishpap%20Foods!%20I%20would%20like%20to%20inquire%20about%20your%20Pure.%20Fresh.%20Convenient.%20pap%20products." 
+    <a href="https://wa.me/2347060432373?text=Hello%20Nourishpap%20Foods!%20I%20would%20like%20to%20inquire%20about%20your%20pap%20products." 
        target="_blank" 
        rel="noopener noreferrer"
        class="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all focus:outline-none border-2 border-white"
@@ -936,22 +936,22 @@
                 <span id="cartSubtotal" class="font-bold text-gray-900">₦0.00</span>
             </div>
             <div class="flex justify-between text-xs text-gray-500">
-                <span>Estimated Shipping</span>
-                <span>Calculated at checkout</span>
+                <span>Order Processing</span>
+                <span class="text-emerald-600 font-bold">WhatsApp Direct Order</span>
             </div>
             <div class="border-t border-gray-200 pt-2 flex justify-between text-base font-extrabold text-brand-greendark">
                 <span>Total</span>
                 <span id="cartTotal">₦0.00</span>
             </div>
 
-            <button onclick="triggerCheckout()" class="w-full py-3.5 rounded-xl bg-brand-green text-white font-extrabold text-sm hover:bg-brand-greendark transition-all shadow-md flex items-center justify-center space-x-2">
-                <i class="fa-solid fa-lock text-xs"></i>
-                <span>Proceed to Secure Checkout</span>
+            <button onclick="triggerCheckout()" class="w-full py-3.5 rounded-xl bg-emerald-600 text-white font-extrabold text-sm hover:bg-emerald-700 transition-all shadow-md flex items-center justify-center space-x-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Send Order via WhatsApp</span>
             </button>
 
-            <p class="text-[10px] text-center text-gray-400 flex items-center justify-center space-x-2">
-                <i class="fa-solid fa-shield-cat"></i>
-                <span>Secured via Paystack / Flutterwave</span>
+            <p class="text-[10px] text-center text-gray-400 flex items-center justify-center space-x-1">
+                <i class="fa-solid fa-lock text-[9px]"></i>
+                <span>Direct dispatch & instant response on 07060432373</span>
             </p>
         </div>
     </div>
@@ -985,9 +985,13 @@
                     <p id="modalProductIngredients" class="text-xs text-gray-600"></p>
                 </div>
 
-                <div class="pt-2">
-                    <button id="modalAddToCartBtn" onclick="" class="w-full py-3 rounded-xl bg-brand-green text-white font-bold text-sm hover:bg-brand-greendark transition-all">
-                        Add to Cart
+                <div class="pt-2 flex flex-col gap-2">
+                    <button id="modalAddToCartBtn" onclick="" class="w-full py-2.5 rounded-xl bg-brand-green text-white font-bold text-xs hover:bg-brand-greendark transition-all">
+                        Add to Cart Basket
+                    </button>
+                    <button id="modalOrderWhatsappBtn" onclick="" class="w-full py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-700 transition-all flex items-center justify-center space-x-1.5">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Order This Variant on WhatsApp</span>
                     </button>
                 </div>
             </div>
@@ -1009,7 +1013,11 @@
     <!-- ========================================== -->
     <!-- JAVASCRIPT STATE LOGIC -->
     <!-- ========================================== -->
+    <!-- JAVASCRIPT STATE & WHATSAPP INTEGRATION -->
+    <!-- ========================================== -->
     <script>
+        const WHATSAPP_PHONE = '2347060432373';
+
         // Products Database
         const productsData = [
             {
@@ -1144,15 +1152,21 @@
                         <p class="text-xs text-gray-500 line-clamp-2 mb-4">${p.description}</p>
                     </div>
 
-                    <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+                    <div class="pt-3 border-t border-gray-100 flex items-center justify-between gap-2">
                         <div>
                             <span class="text-[10px] text-gray-400 uppercase tracking-wider block">Price</span>
-                            <span class="font-extrabold text-lg text-brand-greendark">₦${p.price.toLocaleString()}</span>
+                            <span class="font-extrabold text-base sm:text-lg text-brand-greendark">₦${p.price.toLocaleString()}</span>
                         </div>
-                        <button onclick="addToCart('${p.id}')" class="px-4 py-2.5 rounded-xl bg-brand-green text-white text-xs font-bold hover:bg-brand-greendark shadow transition-all flex items-center space-x-1">
-                            <i class="fa-solid fa-plus"></i>
-                            <span>Add</span>
-                        </button>
+                        <div class="flex items-center space-x-1">
+                            <button onclick="addToCart('${p.id}')" title="Add to Basket" class="px-3 py-2 rounded-xl bg-brand-green text-white text-xs font-bold hover:bg-brand-greendark shadow transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-plus"></i>
+                                <span class="hidden sm:inline">Add</span>
+                            </button>
+                            <button onclick="orderProductWhatsApp('${p.id}')" title="Order via WhatsApp" class="px-3 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 shadow transition-all flex items-center space-x-1">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                                <span>Order</span>
+                            </button>
+                        </div>
                     </div>
                 `;
                 container.appendChild(card);
@@ -1258,12 +1272,37 @@
             }
         }
 
+        // Send Cart via WhatsApp
         function triggerCheckout() {
             if (cart.length === 0) {
-                alert('Your basket is empty! Please add products before checking out.');
+                alert('Your basket is empty! Please add products before placing an order.');
                 return;
             }
-            alert('Connecting to Paystack / Flutterwave Gateway...\nTotal Order Amount: ' + document.getElementById('cartTotal').innerText);
+
+            let message = "Hello Nourishpap Foods! 🌾 I would like to place an order from your website:\n\n";
+            let subtotal = 0;
+
+            cart.forEach((item, idx) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                message += `${idx + 1}. *${item.name}* (500g Pack)\n   Quantity: ${item.quantity}\n   Price: ₦${itemTotal.toLocaleString()}\n\n`;
+            });
+
+            message += `------------------------------\n`;
+            message += `*Total Amount:* ₦${subtotal.toLocaleString()}\n\n`;
+            message += `Please confirm availability and delivery instructions. Thank you!`;
+
+            const encodedMsg = encodeURIComponent(message);
+            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodedMsg}`, '_blank');
+        }
+
+        // Direct Order for Single Product Card
+        function orderProductWhatsApp(productId) {
+            const p = productsData.find(item => item.id === productId);
+            if (!p) return;
+
+            const message = `Hello Nourishpap Foods! 🌾 I would like to order:\n\n*Product:* ${p.name}\n*Price:* ₦${p.price.toLocaleString()} (500g Pack)\n\nPlease let me know how to proceed with payment and delivery.`;
+            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         // Modals Logic
@@ -1283,10 +1322,15 @@
             document.getElementById('modalProductNutrition').innerText = p.nutrition;
             document.getElementById('modalProductIngredients').innerText = p.ingredients;
             
-            const btn = document.getElementById('modalAddToCartBtn');
-            btn.onclick = () => {
+            const btnCart = document.getElementById('modalAddToCartBtn');
+            btnCart.onclick = () => {
                 addToCart(p.id);
                 closeProductModal();
+            };
+
+            const btnWA = document.getElementById('modalOrderWhatsappBtn');
+            btnWA.onclick = () => {
+                orderProductWhatsApp(p.id);
             };
 
             document.getElementById('productModalBackdrop').classList.remove('hidden');
@@ -1313,20 +1357,49 @@
             document.getElementById('blogModalBackdrop').classList.add('hidden');
         }
 
+        // B2B Wholesale Request via WhatsApp
         function handleB2BSubmit(e) {
             e.preventDefault();
-            alert('Thank you for your B2B wholesale inquiry! Our commercial account team will respond within 2 hours.');
-            document.getElementById('b2bForm').reset();
+            
+            const businessName = document.getElementById('b2bBusinessName').value.trim();
+            const category = document.getElementById('b2bCategory').value;
+            const volume = document.getElementById('b2bVolume').value;
+            const contactPerson = document.getElementById('b2bContactPerson').value.trim();
+            const phone = document.getElementById('b2bPhone').value.trim();
+            const email = document.getElementById('b2bEmail').value.trim();
+            const notes = document.getElementById('b2bNotes').value.trim();
+
+            let message = `🏢 *NOURISHPAP B2B WHOLESALE INQUIRY*\n\n`;
+            message += `*Business Name:* ${businessName}\n`;
+            message += `*Category:* ${category}\n`;
+            message += `*Est. Weekly Volume:* ${volume}\n`;
+            message += `*Contact Person:* ${contactPerson}\n`;
+            message += `*Phone:* ${phone}\n`;
+            message += `*Email:* ${email}\n`;
+            if (notes) {
+                message += `*Location / Special Requests:* ${notes}\n`;
+            }
+            message += `\nPlease provide us with your wholesale catalog, pricing, and supply contract details.`;
+
+            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         function handleContactSubmit(e) {
             e.preventDefault();
-            alert('Thank you for contacting Nourishpap Foods! Your message has been received.');
-            e.target.reset();
+            const inputs = e.target.querySelectorAll('input, textarea, select');
+            const name = inputs[0].value.trim();
+            const email = inputs[1].value.trim();
+            const phone = inputs[2].value.trim();
+            const topic = inputs[3].value;
+            const msgBody = inputs[4].value.trim();
+
+            let message = `Hello Nourishpap Foods! 💬\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Topic:* ${topic}\n\n*Message:* ${msgBody}`;
+            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         function downloadB2BBrochure() {
-            alert('Downloading Nourishpap Foods Official B2B Catalog & Price List (PDF)...');
+            const msg = "Hello Nourishpap Foods! I would like to request a copy of your B2B Wholesale Catalog & Price List PDF.";
+            window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
         }
     </script>
 
