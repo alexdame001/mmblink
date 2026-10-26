@@ -1,185 +1,1334 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ibadan Property Platform</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nourishpap Foods | Pure. Fresh. Convenient.</title>
+    
+    <!-- SVG Favicon Matching Logo -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M25 50 Q 15 25 35 15 Q 40 35 25 50 Z' fill='%230C5E32'/><path d='M40 40 Q 30 15 50 10 Q 55 25 40 40 Z' fill='%23147A43'/><path d='M30 40 A 38 38 0 0 1 85 45' fill='none' stroke='%23E59118' stroke-width='4' stroke-linecap='round'/><path d='M25 50 C 25 75, 75 75, 75 50 Z' fill='%230C5E32'/><ellipse cx='50' cy='50' rx='23' ry='12' fill='%23FFFDF9' stroke='%230C5E32' stroke-width='2'/></svg>">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-
-<style>
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    background: #f4f6f9;
-}
-
-header {
-    background: #111827;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.container {
-    padding: 30px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-.card-body {
-    padding: 15px;
-}
-
-.price {
-    color: #16a34a;
-    font-weight: bold;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #1e40af;
-}
-
-#details {
-    display: none;
-}
-
-.badge {
-    background: #e5e7eb;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-}
-</style>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#0C5E32',       /* Primary Leaf Green from Logo */
+                            greenlight: '#147A43',  /* Lighter Leaf Accent */
+                            greendark: '#0D321A',   /* Dark Charcoal Green */
+                            gold: '#E59118',        /* Golden Orange from "pap" text */
+                            goldlight: '#F4A42A',   /* Bright Gold Accent */
+                            golddark: '#C4780C',    /* Dark Warm Gold */
+                            cream: '#FDFBF7',       /* Organic Soft Cream Background */
+                            creamcard: '#FFF9E6',   /* Light Warm Card Accent */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(253, 251, 247, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+        .hero-bg-gradient {
+            background: linear-gradient(135deg, #FDFBF7 0%, #FFF9E6 50%, #F5EEDC 100%);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #FDFBF7;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E59118;
+            border-radius: 4px;
+        }
+        @keyframes floatSlow {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float-slow {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+    </style>
 </head>
+<body class="font-sans text-gray-800 bg-brand-cream selection:bg-brand-gold selection:text-white antialiased custom-scrollbar">
 
-<body>
+    <!-- ========================================== -->
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <!-- ========================================== -->
+    <div class="bg-brand-greendark text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex justify-between items-center max-w-full overflow-hidden">
+        <div class="mx-auto flex items-center space-x-3">
+            <span class="bg-brand-gold text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-widest shadow-sm">B2B & Retail</span>
+            <span class="text-amber-100">Pure, fresh & hygienic Akamu/Ogi • Free delivery on bulk B2B orders over 50kg!</span>
+        </div>
+        <button onclick="this.parentElement.style.display='none'" class="text-gray-400 hover:text-white hidden md:block">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
 
-<header>
-    <h2>🏠 Ibadan Property Platform</h2>
-    <p>Find & Book Property Inspections Easily</p>
-</header>
+    <!-- ========================================== -->
+    <!-- HEADER / NAVIGATION BAR -->
+    <!-- ========================================== -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-emerald-900/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Official Logo Graphic & Brand Name -->
+                <a href="#home" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 flex-shrink-0 relative group-hover:scale-105 transition-transform duration-300">
+                        <!-- Custom SVG Bowl Logo Graphic -->
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-sm">
+                            <!-- Leaves -->
+                            <path d="M 22 46 Q 10 20 32 10 Q 38 32 22 46 Z" fill="#0C5E32" />
+                            <path d="M 38 36 Q 26 10 48 5 Q 54 22 38 36 Z" fill="#147A43" />
+                            <path d="M 28 32 Q 22 22 32 18" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.6"/>
+                            <!-- Swirl Arch -->
+                            <path d="M 28 36 A 40 40 0 0 1 88 42" fill="none" stroke="#E59118" stroke-width="4.5" stroke-linecap="round"/>
+                            <!-- Pap Bowl -->
+                            <path d="M 22 48 C 22 76, 78 76, 78 48 Z" fill="#0C5E32" />
+                            <path d="M 22 48 Q 18 58 78 48 Z" fill="#0C5E32" />
+                            <!-- Bowl Rim & Smooth Pap Inner Surface -->
+                            <ellipse cx="50" cy="48" rx="28" ry="13" fill="#0C5E32" />
+                            <ellipse cx="50" cy="48" rx="26" ry="11" fill="#FFFBF2" stroke="#0C5E32" stroke-width="1.5" />
+                            <path d="M 40 48 Q 50 43 60 48 Q 50 52 40 48 Z" fill="#F4EADB" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="flex items-center leading-none">
+                            <span class="font-bold text-2xl tracking-tight text-brand-green">Nourish</span>
+                            <span class="font-extrabold text-2xl tracking-tight text-brand-gold">pap</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-0.5">
+                            <span class="text-[9px] uppercase font-extrabold text-brand-greendark tracking-[0.2em]">F O O D S</span>
+                            <span class="text-[8px] italic text-brand-golddark font-semibold">Pure. Fresh.</span>
+                        </div>
+                    </div>
+                </a>
 
-<div class="container">
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-7 text-sm font-semibold text-gray-700">
+                    <a href="#home" class="hover:text-brand-green transition-colors py-1 border-b-2 border-transparent hover:border-brand-gold">Home</a>
+                    <a href="#about" class="hover:text-brand-green transition-colors py-1 border-b-2 border-transparent hover:border-brand-gold">About Us</a>
+                    <a href="#products" class="hover:text-brand-green transition-colors py-1 border-b-2 border-transparent hover:border-brand-gold">Products Catalog</a>
+                    <a href="#b2b" class="hover:text-brand-green transition-colors py-1 border-b-2 border-transparent hover:border-brand-gold">B2B Wholesale</a>
+                    <a href="#blog" class="hover:text-brand-green transition-colors py-1 border-b-2 border-transparent hover:border-brand-gold">Recipes & Health</a>
+                    <a href="#contact" class="hover:text-brand-green transition-colors py-1 border-b-2 border-transparent hover:border-brand-gold">Contact Us</a>
+                </nav>
 
-<div id="listings">
-    <h3>Available Properties</h3>
+                <!-- Header Actions -->
+                <div class="flex items-center space-x-4">
+                    <!-- Cart Trigger Button -->
+                    <button onclick="toggleCartDrawer()" class="relative p-2.5 text-brand-greendark hover:text-brand-green transition-colors focus:outline-none" aria-label="View Shopping Cart">
+                        <i class="fa-solid fa-basket-shopping text-xl"></i>
+                        <span id="cartBadge" class="absolute top-1 right-1 bg-brand-gold text-white text-xs font-extrabold w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+                    </button>
 
-    <div class="grid">
+                    <!-- CTAs -->
+                    <a href="#products" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs font-bold bg-brand-green text-white hover:bg-brand-greendark shadow-md hover:shadow-lg transition-all">
+                        Shop B2C
+                    </a>
+                    <a href="#b2b" class="hidden md:inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs font-bold bg-brand-gold text-white hover:bg-brand-golddark shadow-md hover:shadow-lg transition-all">
+                        B2B Bulk Quote
+                    </a>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994">
-            <div class="card-body">
-                <h4>2 Bedroom Apartment</h4>
-                <p class="price">₦800,000/year</p>
-                <p><span class="badge">Bodija</span> • Agent: Tunde</p>
-                <button onclick="viewDetails('Bodija Apartment')">View Details</button>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden p-2 text-brand-greendark hover:text-brand-green focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c">
-            <div class="card-body">
-                <h4>Self Contain</h4>
-                <p class="price">₦300,000/year</p>
-                <p><span class="badge">Akobo</span> • Agent: Sola</p>
-                <button onclick="viewDetails('Akobo Self Contain')">View Details</button>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-gray-200 px-4 pt-3 pb-6 space-y-3 shadow-xl">
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 text-gray-800 font-semibold hover:text-brand-green border-b border-gray-100">Home</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-gray-800 font-semibold hover:text-brand-green border-b border-gray-100">About Us</a>
+            <a href="#products" onclick="toggleMobileMenu()" class="block py-2 text-gray-800 font-semibold hover:text-brand-green border-b border-gray-100">Products Catalog</a>
+            <a href="#b2b" onclick="toggleMobileMenu()" class="block py-2 text-gray-800 font-semibold hover:text-brand-green border-b border-gray-100">B2B Wholesale Portal</a>
+            <a href="#blog" onclick="toggleMobileMenu()" class="block py-2 text-gray-800 font-semibold hover:text-brand-green border-b border-gray-100">Recipes & Health Tips</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-gray-800 font-semibold hover:text-brand-green">Contact Us</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <a href="#products" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-brand-green text-white font-bold text-sm">Shop Now (Retail)</a>
+                <a href="#b2b" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-brand-gold text-white font-bold text-sm">Request Wholesale Quote</a>
             </div>
         </div>
+    </header>
 
+    <!-- ========================================== -->
+    <!-- HERO SECTION -->
+    <!-- ========================================== -->
+    <section id="home" class="relative hero-bg-gradient pt-10 pb-16 lg:pt-16 lg:pb-24 overflow-hidden border-b border-amber-900/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-brand-creamcard border border-amber-300/80 text-brand-greendark px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold shadow-sm">
+                        <i class="fa-solid fa-leaf text-brand-green"></i>
+                        <span>100% Organic • Hygienically Processed • Non-GMO</span>
+                    </div>
+
+                    <!-- Main Headline incorporating exact tagline from logo -->
+                    <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-extrabold text-brand-greendark leading-tight">
+                        <span class="text-brand-green">Pure.</span> <span class="text-brand-gold">Fresh.</span> Convenient.
+                        <span class="block text-2xl sm:text-4xl font-sans font-bold text-gray-800 mt-2">Authentic Pap for Every Table & Kitchen.</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-gray-700 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Nourishpap Foods brings you ultra-hygienic, sand-free Akamu/Ogi milled from premium organic grains. Formulated for health-conscious homes, infants, nursing mothers, and daily bulk supply for commercial caterers.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#products" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-green text-white font-bold text-base hover:bg-brand-greendark shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                            <span>Shop Retail (B2C)</span>
+                            <i class="fa-solid fa-arrow-right text-sm"></i>
+                        </a>
+                        <a href="#b2b" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-gold text-white font-bold text-base hover:bg-brand-golddark shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-building text-sm"></i>
+                            <span>Request Bulk Quote (B2B)</span>
+                        </a>
+                    </div>
+
+                    <!-- Micro Badge Stats -->
+                    <div class="pt-8 border-t border-amber-900/10 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <p class="font-bold text-2xl sm:text-3xl text-brand-green">100%</p>
+                            <p class="text-xs text-gray-600 font-semibold">Grit & Sand Free</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-2xl sm:text-3xl text-brand-gold">0%</p>
+                            <p class="text-xs text-gray-600 font-semibold">Chemical Additives</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-2xl sm:text-3xl text-brand-greendark">50k+</p>
+                            <p class="text-xs text-gray-600 font-semibold">Tables Nourished</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual Display featuring Official Logo Badge -->
+                <div class="lg:col-span-5 relative">
+                    <div class="absolute -top-6 -left-6 w-72 h-72 bg-brand-gold/20 rounded-full blur-3xl -z-10"></div>
+                    <div class="absolute -bottom-6 -right-6 w-72 h-72 bg-brand-green/20 rounded-full blur-3xl -z-10"></div>
+
+                    <!-- Main Presentation Card -->
+                    <div class="bg-white p-5 sm:p-6 rounded-3xl shadow-2xl border border-amber-100 relative">
+                        <div class="relative rounded-2xl overflow-hidden group">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Creamy Nourishpap Serving" 
+                                 class="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                 onerror="this.src='https://placehold.co/800x600/0C5E32/FFFFFF?text=Nourishpap+Fresh+Bowl'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                            
+                            <div class="absolute bottom-4 left-4 right-4 text-white">
+                                <span class="bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Official Signature</span>
+                                <h3 class="font-serif text-xl font-bold mt-1">Yellow Corn & Nutri-Fortified Pap</h3>
+                                <p class="text-xs text-amber-100">Pure naturally fermented breakfast, crafted to perfection.</p>
+                            </div>
+                        </div>
+
+                        <!-- Logo Brand Watermark Badge floating -->
+                        <div class="absolute -bottom-6 -left-4 bg-white p-3.5 rounded-2xl shadow-xl border border-amber-100 flex items-center space-x-3 animate-float-slow">
+                            <div class="w-10 h-10 flex-shrink-0">
+                                <svg viewBox="0 0 100 100" class="w-full h-full">
+                                    <path d="M 22 46 Q 10 20 32 10 Q 38 32 22 46 Z" fill="#0C5E32" />
+                                    <path d="M 38 36 Q 26 10 48 5 Q 54 22 38 36 Z" fill="#147A43" />
+                                    <path d="M 28 36 A 40 40 0 0 1 88 42" fill="none" stroke="#E59118" stroke-width="4.5"/>
+                                    <path d="M 22 48 C 22 76, 78 76, 78 48 Z" fill="#0C5E32" />
+                                    <ellipse cx="50" cy="48" rx="26" ry="11" fill="#FFFBF2" stroke="#0C5E32" stroke-width="1.5" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-xs font-extrabold text-brand-greendark">Guaranteed Pure</p>
+                                <p class="text-[10px] text-gray-500 font-semibold">NAFDAC Compliant Facility</p>
+                            </div>
+                        </div>
+
+                        <div class="absolute -top-5 -right-4 bg-white p-3.5 rounded-2xl shadow-xl border border-amber-100 flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-full bg-emerald-100 text-brand-green flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-gray-800">Fresh Daily Delivery</p>
+                                <p class="text-[10px] text-gray-500">Retail & B2B Supply</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SLOGAN & VALUE PROPOSITION BAR -->
+    <!-- ========================================== -->
+    <section class="bg-brand-greendark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <p class="text-brand-gold font-bold text-xs uppercase tracking-[0.2em]">The Nourishpap Promise</p>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold mt-1 text-white">Pure. Fresh. Convenient.</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="flex items-start space-x-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <div class="w-12 h-12 rounded-xl bg-brand-gold/20 border border-brand-gold/40 flex items-center justify-center text-brand-gold flex-shrink-0 text-xl font-bold">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base text-brand-gold">100% Pure Grains</h3>
+                        <p class="text-xs text-gray-300 mt-1">Triple-washed, stone-free non-GMO grains processed with purified reverse-osmosis water.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <div class="w-12 h-12 rounded-xl bg-brand-gold/20 border border-brand-gold/40 flex items-center justify-center text-brand-gold flex-shrink-0 text-xl font-bold">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base text-brand-gold">Always Fresh</h3>
+                        <p class="text-xs text-gray-300 mt-1">Natural wet-milled fermentation preserved without artificial additives or preservatives.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <div class="w-12 h-12 rounded-xl bg-brand-gold/20 border border-brand-gold/40 flex items-center justify-center text-brand-gold flex-shrink-0 text-xl font-bold">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base text-brand-gold">Convenient Packs</h3>
+                        <p class="text-xs text-gray-300 mt-1">Hygienic vacuum tubs ready for quick cooking in individual sizes & commercial bulk tubs.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <div class="w-12 h-12 rounded-xl bg-brand-gold/20 border border-brand-gold/40 flex items-center justify-center text-brand-gold flex-shrink-0 text-xl font-bold">
+                        <i class="fa-solid fa-shield-virus"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base text-brand-gold">Bio-Fortified Options</h3>
+                        <p class="text-xs text-gray-300 mt-1">Nutrient-dense blends enriched with natural ginger, cloves, milk, or infant micronutrients.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- ABOUT US & QUALITY HYGIENE STANDARDS -->
+    <!-- ========================================== -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Visual Showcase -->
+                <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+                    <div class="space-y-4">
+                        <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=600&q=80" 
+                             alt="Golden Corn Grain Field" 
+                             class="rounded-2xl shadow-md h-56 w-full object-cover"
+                             onerror="this.src='https://placehold.co/600x400/0C5E32/FFFFFF?text=Quality+Grains'">
+                        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80" 
+                             alt="Hygienic Facility" 
+                             class="rounded-2xl shadow-md h-44 w-full object-cover"
+                             onerror="this.src='https://placehold.co/600x400/E59118/FFFFFF?text=Clean+Processing'">
+                    </div>
+                    <div class="space-y-4 pt-8">
+                        <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=600&q=80" 
+                             alt="Delicious Nourishpap Breakfast" 
+                             class="rounded-2xl shadow-md h-44 w-full object-cover"
+                             onerror="this.src='https://placehold.co/600x400/0D321A/FFFFFF?text=Nourishpap+Bowl'">
+                        <div class="bg-brand-creamcard p-6 rounded-2xl border border-amber-200 text-center flex flex-col justify-center h-56">
+                            <i class="fa-solid fa-award text-4xl text-brand-gold mb-2"></i>
+                            <h3 class="font-serif font-bold text-brand-greendark text-lg">Hygienically Sealed Tubs</h3>
+                            <p class="text-xs text-gray-600 mt-1">Sealed to lock in natural freshness, aroma, and essential nutrients.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story & Values -->
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-brand-gold font-bold text-xs uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">Our Story & Standards</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-brand-greendark">Modernizing Traditional Breakfast with Uncompromised Quality.</h2>
+                    
+                    <p class="text-gray-700 leading-relaxed text-sm sm:text-base">
+                        Nourishpap Foods was established to revolutionize traditional African pap (Ogi/Akamu). We eliminate the stress, grit, and contamination associated with traditional local market processing by producing premium, bio-fortified pap in a clean, state-of-the-art facility.
+                    </p>
+
+                    <!-- Core Value Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="border border-amber-100 bg-brand-cream p-4 rounded-xl">
+                            <div class="flex items-center space-x-2 text-brand-green font-bold text-base mb-1">
+                                <i class="fa-solid fa-circle-check text-brand-gold"></i>
+                                <span>Absolute Hygiene</span>
+                            </div>
+                            <p class="text-xs text-gray-600">Reverse Osmosis water purification and stainless-steel milling equipment.</p>
+                        </div>
+
+                        <div class="border border-amber-100 bg-brand-cream p-4 rounded-xl">
+                            <div class="flex items-center space-x-2 text-brand-green font-bold text-base mb-1">
+                                <i class="fa-solid fa-circle-check text-brand-gold"></i>
+                                <span>Nutritional Density</span>
+                            </div>
+                            <p class="text-xs text-gray-600">Rich in B-vitamins, iron, calcium, carbohydrates, and essential minerals.</p>
+                        </div>
+
+                        <div class="border border-amber-100 bg-brand-cream p-4 rounded-xl">
+                            <div class="flex items-center space-x-2 text-brand-green font-bold text-base mb-1">
+                                <i class="fa-solid fa-circle-check text-brand-gold"></i>
+                                <span>B2B Reliability</span>
+                            </div>
+                            <p class="text-xs text-gray-600">Scheduled supply contracts for hotels, eateries, and supermarket chains.</p>
+                        </div>
+
+                        <div class="border border-amber-100 bg-brand-cream p-4 rounded-xl">
+                            <div class="flex items-center space-x-2 text-brand-green font-bold text-base mb-1">
+                                <i class="fa-solid fa-circle-check text-brand-gold"></i>
+                                <span>100% Authentic Taste</span>
+                            </div>
+                            <p class="text-xs text-gray-600">Preserving rich traditional fermented flavor without synthetic flavors.</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="#b2b" class="inline-flex items-center space-x-2 text-brand-green font-bold hover:text-brand-gold transition-colors text-sm">
+                            <span>Explore B2B Wholesale Partnership Options</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- PRODUCTS CATALOG & E-COMMERCE -->
+    <!-- ========================================== -->
+    <section id="products" class="py-20 bg-brand-cream border-t border-amber-900/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-brand-gold font-bold text-xs uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">Our Product Range</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-brand-greendark mt-3">Choose Your Favorite Nourishpap Variant</h2>
+                <p class="text-gray-600 text-sm sm:text-base mt-2">Available in individual household packs (500g, 1kg) and commercial B2B bulk tubs (5kg, 10kg, 25kg).</p>
+                
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap justify-center gap-2 mt-8">
+                    <button onclick="filterProducts('all')" class="filter-btn active-filter px-5 py-2 rounded-full text-xs font-bold transition-all bg-brand-green text-white shadow">All Variants</button>
+                    <button onclick="filterProducts('white')" class="filter-btn px-5 py-2 rounded-full text-xs font-bold transition-all bg-white text-gray-700 hover:bg-amber-100">White Corn</button>
+                    <button onclick="filterProducts('yellow')" class="filter-btn px-5 py-2 rounded-full text-xs font-bold transition-all bg-white text-gray-700 hover:bg-amber-100">Yellow Corn</button>
+                    <button onclick="filterProducts('guinea')" class="filter-btn px-5 py-2 rounded-full text-xs font-bold transition-all bg-white text-gray-700 hover:bg-amber-100">Guinea Corn (Baba)</button>
+                    <button onclick="filterProducts('fortified')" class="filter-btn px-5 py-2 rounded-full text-xs font-bold transition-all bg-white text-gray-700 hover:bg-amber-100">Nutri-Fortified</button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Dynamically populated via JS -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- B2B / WHOLESALE SOLUTIONS -->
+    <!-- ========================================== -->
+    <section id="b2b" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-brand-greendark to-emerald-950 rounded-3xl text-white p-8 sm:p-12 shadow-2xl overflow-hidden relative">
+                
+                <!-- Background Accent Graphic -->
+                <div class="absolute -right-16 -bottom-16 w-96 h-96 bg-brand-gold/15 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- B2B Offerings Info -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <span class="bg-brand-gold text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Commercial Partnership Portal</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-extrabold leading-tight text-white">
+                            Reliable Bulk Pap Supply for Caterers, Hotels & Supermarkets.
+                        </h2>
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                            Nourishpap Foods partners with food service operators to deliver consistent, hygienic, non-GMO pap on tailored supply schedules with lucrative wholesale margins.
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-brand-gold text-white flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-utensils"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">For Restaurants, Hotels & Cafes</h3>
+                                    <p class="text-xs text-gray-300">Custom morning delivery schedules, discounted volume pricing, zero texture variability.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-brand-gold text-white flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-store"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-base">For Retailers & Supermarket Chains</h3>
+                                    <p class="text-xs text-gray-300">Barcode-ready sealed shelf packs, high retail profit margins, promotional support.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Brochure Download Button -->
+                        <div class="pt-4">
+                            <button onclick="downloadB2BBrochure()" class="inline-flex items-center space-x-3 px-6 py-3.5 rounded-full bg-white text-brand-greendark font-bold hover:bg-brand-gold hover:text-white transition-all shadow-lg text-sm">
+                                <i class="fa-solid fa-file-pdf text-red-600 text-lg"></i>
+                                <span>Download B2B Wholesale Catalog & Price List (PDF)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- B2B Inquiry Form -->
+                    <div class="lg:col-span-6 bg-white text-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl">
+                        <h3 class="font-serif text-2xl font-bold text-brand-greendark">Request Wholesale Bulk Quote</h3>
+                        <p class="text-xs text-gray-500 mb-6">Complete the form below and our commercial sales team will reach out within 2 hours.</p>
+
+                        <form id="b2bForm" onsubmit="handleB2BSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Business Name *</label>
+                                    <input type="text" required placeholder="e.g. Royal Crown Hotel" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Business Category *</label>
+                                    <select required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm bg-white">
+                                        <option value="">Select Category</option>
+                                        <option value="Restaurant / Eatery">Restaurant / Eatery</option>
+                                        <option value="Hotel / Resort">Hotel / Resort</option>
+                                        <option value="Supermarket / Retailer">Supermarket / Retailer</option>
+                                        <option value="Distributor / Reseller">Distributor / Reseller</option>
+                                        <option value="School / Corporate Caterer">School / Corporate Caterer</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Estimated Weekly Volume *</label>
+                                    <select required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm bg-white">
+                                        <option value="">Select Estimated Volume</option>
+                                        <option value="25kg - 50kg">25kg - 50kg per week</option>
+                                        <option value="50kg - 150kg">50kg - 150kg per week</option>
+                                        <option value="150kg - 500kg">150kg - 500kg per week</option>
+                                        <option value="500kg+">500kg+ (Contract Supply)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Contact Person *</label>
+                                    <input type="text" required placeholder="Full Name" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Phone / WhatsApp *</label>
+                                    <input type="tel" required placeholder="+234 800 000 0000" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 mb-1">Work Email *</label>
+                                    <input type="email" required placeholder="procurement@company.com" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Delivery Location & Special Requirements</label>
+                                <textarea rows="3" placeholder="Specify preferred delivery times, custom packaging sizes, etc." class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl bg-brand-gold text-white font-extrabold text-base hover:bg-brand-golddark shadow-lg transition-all flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Submit Wholesale Quote Request</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- BLOG / RECIPES & HEALTH TIPS -->
+    <!-- ========================================== -->
+    <section id="blog" class="py-20 bg-brand-cream border-t border-amber-900/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-brand-gold font-bold text-xs uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">Nutrition & Kitchen Journal</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-brand-greendark mt-3">Recipes & Health Articles</h2>
+                </div>
+                <p class="text-gray-600 text-sm max-w-md mt-2 md:mt-0">Discover traditional breakfast pairings, infant weaning guides, and health benefits of bio-fortified pap variants.</p>
+            </div>
+
+            <!-- Blog Articles Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Article 1 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group flex flex-col justify-between border border-amber-100">
+                    <div>
+                        <div class="relative overflow-hidden h-48">
+                            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Akara and Pap" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                 onerror="this.src='https://placehold.co/600x400/0C5E32/FFFFFF?text=Akara+%26+Pap'">
+                            <span class="absolute top-3 left-3 bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded-full">Recipes</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-xs text-gray-500 space-x-3 mb-2">
+                                <span><i class="fa-regular fa-clock"></i> 5 min read</span>
+                                <span>•</span>
+                                <span>October 24, 2026</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-brand-greendark group-hover:text-brand-green transition-colors">
+                                How to Make Lump-Free Smooth Pap with Crunchy Akara
+                            </h3>
+                            <p class="text-xs text-gray-600 mt-2 line-clamp-3">
+                                Master the traditional Nigerian breakfast with step-by-step instructions on achieving silky lump-free texture every time.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBlogModal(0)" class="text-brand-green font-bold text-xs hover:text-brand-gold flex items-center space-x-1">
+                            <span>Read Full Guide</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group flex flex-col justify-between border border-amber-100">
+                    <div>
+                        <div class="relative overflow-hidden h-48">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Nutritional Benefits" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                 onerror="this.src='https://placehold.co/600x400/E59118/FFFFFF?text=Infant+Nutrition'">
+                            <span class="absolute top-3 left-3 bg-brand-green text-white text-xs font-bold px-3 py-1 rounded-full">Infant & Maternal</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-xs text-gray-500 space-x-3 mb-2">
+                                <span><i class="fa-regular fa-clock"></i> 7 min read</span>
+                                <span>•</span>
+                                <span>October 18, 2026</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-brand-greendark group-hover:text-brand-green transition-colors">
+                                Nutritional Benefits of Sorghum Pap for Nursing Mothers & Toddlers
+                            </h3>
+                            <p class="text-xs text-gray-600 mt-2 line-clamp-3">
+                                Discover why red sorghum (Guinea corn) is rich in iron, calcium, and milk-boosting nutrients for maternal health.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBlogModal(1)" class="text-brand-green font-bold text-xs hover:text-brand-gold flex items-center space-x-1">
+                            <span>Read Full Article</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group flex flex-col justify-between border border-amber-100">
+                    <div>
+                        <div class="relative overflow-hidden h-48">
+                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Hygienic Process" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                 onerror="this.src='https://placehold.co/600x400/0D321A/FFFFFF?text=Clean+Standards'">
+                            <span class="absolute top-3 left-3 bg-brand-greendark text-white text-xs font-bold px-3 py-1 rounded-full">Safety & Quality</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-xs text-gray-500 space-x-3 mb-2">
+                                <span><i class="fa-regular fa-clock"></i> 4 min read</span>
+                                <span>•</span>
+                                <span>October 10, 2026</span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-brand-greendark group-hover:text-brand-green transition-colors">
+                                How We Guarantee 100% Grit and Sand Free Pap
+                            </h3>
+                            <p class="text-xs text-gray-600 mt-2 line-clamp-3">
+                                Inside our mechanical gravity destoning and RO water filtration facility designed to ensure pure food hygiene.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBlogModal(2)" class="text-brand-green font-bold text-xs hover:text-brand-gold flex items-center space-x-1">
+                            <span>Read Full Article</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- CONTACT US SECTION -->
+    <!-- ========================================== -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Info -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-brand-gold font-bold text-xs uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">Get In Touch</span>
+                    <h2 class="font-serif text-3xl font-extrabold text-brand-greendark">We’re Here to Serve You</h2>
+                    <p class="text-gray-600 text-sm">Have questions about retail orders, bulk supply schedules, or custom processing? Reach out to our team.</p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-amber-100 text-brand-gold flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 text-sm">Processing Plant & Head Office</h3>
+                                <p class="text-xs text-gray-600">Plot 12, Industrial Food Park, Ikeja / Lekki Express, Lagos, Nigeria.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-emerald-100 text-brand-green flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 text-sm">Customer Care & Wholesale Line</h3>
+                                <p class="text-xs text-gray-600">+234 (0) 800-NOURISH (668-7474)</p>
+                                <p class="text-xs text-gray-600">+234 (0) 812 345 6789</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 rounded-full bg-amber-100 text-brand-gold flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-800 text-sm">Official Email</h3>
+                                <p class="text-xs text-gray-600">hello@nourishpapfoods.com</p>
+                                <p class="text-xs text-gray-600">b2b@nourishpapfoods.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Facility Map Placeholder Card -->
+                    <div class="rounded-2xl overflow-hidden border border-gray-200 bg-brand-cream p-4 text-center">
+                        <div class="flex items-center justify-center space-x-2 text-brand-greendark font-bold text-xs mb-2">
+                            <i class="fa-solid fa-map-location-dot text-brand-gold"></i>
+                            <span>Lagos Processing Facility Location</span>
+                        </div>
+                        <div class="bg-gray-200 h-32 rounded-xl flex items-center justify-center relative group cursor-pointer" onclick="alert('Navigating to Nourishpap Foods Processing Plant on Google Maps...')">
+                            <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=600&q=80" alt="Map Location" class="w-full h-full object-cover rounded-xl opacity-60">
+                            <span class="absolute bg-white px-3.5 py-1.5 rounded-full text-xs font-bold text-gray-800 shadow-md flex items-center space-x-1 group-hover:scale-105 transition-transform">
+                                <i class="fa-solid fa-directions text-brand-green"></i>
+                                <span>Get Directions</span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Direct Message Form -->
+                <div class="lg:col-span-7 bg-brand-cream p-6 sm:p-8 rounded-3xl border border-amber-200/80 shadow-sm">
+                    <h3 class="font-serif text-2xl font-bold text-brand-greendark mb-1">Send Us a Direct Message</h3>
+                    <p class="text-xs text-gray-500 mb-6">Whether you are a retail customer or commercial partner, we'd love to assist you.</p>
+
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Your Full Name *</label>
+                                <input type="text" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Email Address *</label>
+                                <input type="email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm bg-white">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" placeholder="+234 800 000 0000" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Topic</label>
+                                <select class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm bg-white">
+                                    <option value="General Inquiry">General Inquiry</option>
+                                    <option value="Retail Order Question">Retail Order Inquiry</option>
+                                    <option value="Feedback / Review">Feedback / Review</option>
+                                    <option value="Distributor Partnership">Distributor Partnership</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Your Message *</label>
+                            <textarea rows="4" required placeholder="How can we help you today?" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-green focus:outline-none text-sm bg-white"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-brand-green text-white font-extrabold text-base hover:bg-brand-greendark shadow-md transition-all">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- FOOTER -->
+    <!-- ========================================== -->
+    <footer class="bg-brand-greendark text-white pt-16 pb-12 border-t border-emerald-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-emerald-900/60">
+                
+                <!-- Logo & Brand Description -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 flex-shrink-0">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <path d="M 22 46 Q 10 20 32 10 Q 38 32 22 46 Z" fill="#0C5E32" />
+                                <path d="M 38 36 Q 26 10 48 5 Q 54 22 38 36 Z" fill="#147A43" />
+                                <path d="M 28 36 A 40 40 0 0 1 88 42" fill="none" stroke="#E59118" stroke-width="4.5"/>
+                                <path d="M 22 48 C 22 76, 78 76, 78 48 Z" fill="#0C5E32" />
+                                <ellipse cx="50" cy="48" rx="26" ry="11" fill="#FFFBF2" stroke="#0C5E32" stroke-width="1.5" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="flex items-center leading-none">
+                                <span class="font-bold text-xl tracking-tight text-white">Nourish</span>
+                                <span class="font-extrabold text-xl tracking-tight text-brand-gold">pap</span>
+                            </div>
+                            <span class="text-[8px] uppercase font-extrabold text-amber-100 tracking-[0.2em] block">F O O D S</span>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-gray-300 leading-relaxed max-w-sm">
+                        Nigeria's premier producer of hygienic, bio-fortified, and 100% natural pap (Akamu/Ogi). Dedicated to bringing <span class="text-brand-gold font-semibold">Pure. Fresh. Convenient.</span> breakfast to homes and bulk kitchens.
+                    </p>
+
+                    <div class="flex items-center space-x-3 pt-2">
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-gold hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-gold hover:text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-gold hover:text-white transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-gold hover:text-white transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h3 class="font-bold text-sm text-brand-gold uppercase tracking-wider mb-4">Quick Navigation</h3>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="#home" class="hover:text-white transition-colors">Home Page</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">About Our Brand</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Products Catalog</a></li>
+                        <li><a href="#b2b" class="hover:text-white transition-colors">B2B Wholesale Portal</a></li>
+                        <li><a href="#blog" class="hover:text-white transition-colors">Recipes & Nutrition</a></li>
+                    </ul>
+                </div>
+
+                <!-- Product Variants -->
+                <div>
+                    <h3 class="font-bold text-sm text-brand-gold uppercase tracking-wider mb-4">Product Variants</h3>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li><a href="#products" class="hover:text-white transition-colors">White Corn Pap (Classic)</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Bio-Fortified Yellow Corn</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Guinea Corn Pap (Sorghum)</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Ginger & Clove Fortified</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">B2B Commercial Bulk Tubs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="font-bold text-sm text-brand-gold uppercase tracking-wider mb-4">Newsletter</h3>
+                    <p class="text-xs text-gray-300 mb-3">Subscribe for recipe ideas, discount codes, and wholesale updates.</p>
+                    <form onsubmit="alert('Thank you for subscribing to Nourishpap Foods!'); event.preventDefault();" class="space-y-2">
+                        <input type="email" required placeholder="Enter your email" class="w-full px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-xs text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-brand-gold">
+                        <button type="submit" class="w-full py-2 bg-brand-gold text-white font-bold text-xs rounded-lg hover:bg-brand-golddark transition-colors">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Bottom Legal & Certifications -->
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-gray-400 space-y-4 md:space-y-0">
+                <p>&copy; 2026 Nourishpap Foods Ltd. All Rights Reserved.</p>
+                <div class="flex items-center space-x-6">
+                    <span class="flex items-center space-x-1"><i class="fa-solid fa-check text-brand-gold"></i> <span>NAFDAC Certified</span></span>
+                    <span class="flex items-center space-x-1"><i class="fa-solid fa-check text-brand-gold"></i> <span>100% Organic Grains</span></span>
+                    <a href="#" class="hover:underline">Privacy Policy</a>
+                    <a href="#" class="hover:underline">Terms of Sale</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- FLOATING WHATSAPP QUICK CHAT WIDGET -->
+    <!-- ========================================== -->
+    <a href="https://wa.me/2348123456789?text=Hello%20Nourishpap%20Foods!%20I%20would%20like%20to%20inquire%20about%20your%20Pure.%20Fresh.%20Convenient.%20pap%20products." 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all focus:outline-none border-2 border-white"
+       aria-label="Direct WhatsApp Chat Support">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- ========================================== -->
+    <!-- SHOPPING CART SLIDE-OVER DRAWER -->
+    <!-- ========================================== -->
+    <div id="cartDrawerBackdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/50 z-50 hidden transition-opacity duration-300"></div>
+    
+    <div id="cartDrawer" class="fixed top-0 right-0 bottom-0 w-full sm:w-96 bg-white z-50 transform translate-x-full transition-transform duration-300 shadow-2xl flex flex-col justify-between">
+        
+        <!-- Cart Header -->
+        <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-brand-cream">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-basket-shopping text-brand-green text-xl"></i>
+                <h3 class="font-serif font-bold text-lg text-brand-greendark">Your Shopping Basket</h3>
+            </div>
+            <button onclick="toggleCartDrawer()" class="text-gray-400 hover:text-gray-700 p-1">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cartItemsContainer" class="p-5 overflow-y-auto flex-1 space-y-4 custom-scrollbar">
+            <!-- Dynamic Cart Content -->
+        </div>
+
+        <!-- Cart Footer -->
+        <div class="p-5 border-t border-gray-100 bg-gray-50 space-y-3">
+            <div class="flex justify-between text-sm text-gray-600">
+                <span>Subtotal</span>
+                <span id="cartSubtotal" class="font-bold text-gray-900">₦0.00</span>
+            </div>
+            <div class="flex justify-between text-xs text-gray-500">
+                <span>Estimated Shipping</span>
+                <span>Calculated at checkout</span>
+            </div>
+            <div class="border-t border-gray-200 pt-2 flex justify-between text-base font-extrabold text-brand-greendark">
+                <span>Total</span>
+                <span id="cartTotal">₦0.00</span>
+            </div>
+
+            <button onclick="triggerCheckout()" class="w-full py-3.5 rounded-xl bg-brand-green text-white font-extrabold text-sm hover:bg-brand-greendark transition-all shadow-md flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-lock text-xs"></i>
+                <span>Proceed to Secure Checkout</span>
+            </button>
+
+            <p class="text-[10px] text-center text-gray-400 flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-shield-cat"></i>
+                <span>Secured via Paystack / Flutterwave</span>
+            </p>
+        </div>
     </div>
-</div>
 
-<div id="details">
-    <h2 id="title"></h2>
-    <p>Spacious property with good road, water supply and security.</p>
+    <!-- ========================================== -->
+    <!-- PRODUCT QUICK VIEW MODAL -->
+    <!-- ========================================== -->
+    <div id="productModalBackdrop" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative max-h-[90vh] flex flex-col md:flex-row">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 z-10 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-gray-700 hover:bg-white shadow">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
 
-    <button onclick="book()">Request Inspection</button>
-    <button onclick="goBack()" style="background:#6b7280;">Back</button>
-</div>
+            <div class="md:w-1/2 h-64 md:h-auto bg-gray-100 relative">
+                <img id="modalProductImg" src="" alt="Product" class="w-full h-full object-cover">
+                <span id="modalProductBadge" class="absolute top-4 left-4 bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded-full uppercase"></span>
+            </div>
 
-</div>
+            <div class="md:w-1/2 p-6 overflow-y-auto custom-scrollbar space-y-4">
+                <h3 id="modalProductTitle" class="font-serif text-2xl font-bold text-brand-greendark"></h3>
+                <p id="modalProductPrice" class="text-xl font-bold text-brand-gold"></p>
+                <p id="modalProductDesc" class="text-xs text-gray-600 leading-relaxed"></p>
 
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <h3>✅ Booking Sent!</h3>
-        <p>The agent will contact you shortly.</p>
-        <button onclick="closeModal()">Close</button>
+                <div class="border-t border-gray-100 pt-3 space-y-2">
+                    <h4 class="text-xs font-bold text-brand-greendark uppercase tracking-wider">Nutritional Highlights:</h4>
+                    <p id="modalProductNutrition" class="text-xs text-gray-600 bg-brand-cream p-2.5 rounded-lg border border-amber-200/60"></p>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="text-xs font-bold text-brand-greendark uppercase tracking-wider">Ingredients & Standards:</h4>
+                    <p id="modalProductIngredients" class="text-xs text-gray-600"></p>
+                </div>
+
+                <div class="pt-2">
+                    <button id="modalAddToCartBtn" onclick="" class="w-full py-3 rounded-xl bg-brand-green text-white font-bold text-sm hover:bg-brand-greendark transition-all">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-<script>
-function viewDetails(name){
-    document.getElementById('listings').style.display='none';
-    document.getElementById('details').style.display='block';
-    document.getElementById('title').innerText=name;
-}
+    <!-- ========================================== -->
+    <!-- BLOG MODAL READER -->
+    <!-- ========================================== -->
+    <div id="blogModalBackdrop" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 overflow-y-auto max-h-[85vh] relative shadow-2xl custom-scrollbar">
+            <button onclick="closeBlogModal()" class="absolute top-4 right-4 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 hover:bg-gray-200">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="blogModalContent"></div>
+        </div>
+    </div>
 
-function goBack(){
-    document.getElementById('listings').style.display='block';
-    document.getElementById('details').style.display='none';
-}
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT STATE LOGIC -->
+    <!-- ========================================== -->
+    <script>
+        // Products Database
+        const productsData = [
+            {
+                id: 'p1',
+                category: 'white',
+                name: 'White Corn Pap (Classic)',
+                price: 1500,
+                rating: 4.9,
+                badge: 'Popular',
+                image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+                description: 'Smooth, naturally fermented non-GMO white corn pap with a clean traditional tart flavor. Processed with zero grit.',
+                nutrition: 'Rich in Carbohydrates, Potassium, Iron, and essential B-Vitamins.',
+                ingredients: '100% Organic White Maize, Purified RO Water.'
+            },
+            {
+                id: 'p2',
+                category: 'yellow',
+                name: 'Bio-Fortified Yellow Corn Pap',
+                price: 1700,
+                rating: 5.0,
+                badge: 'Best Seller',
+                image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=600&q=80',
+                description: 'Milled from high-carotenoid bio-fortified yellow maize, delivering natural Pro-Vitamin A for clear vision and immunity.',
+                nutrition: 'High Vitamin A, Magnesium, Dietary Fiber.',
+                ingredients: 'Bio-fortified Yellow Maize, Filtered RO Water.'
+            },
+            {
+                id: 'p3',
+                category: 'guinea',
+                name: 'Guinea Corn Pap (Baba / Sorghum)',
+                price: 1800,
+                rating: 4.8,
+                badge: 'Maternal Choice',
+                image: 'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=600&q=80',
+                description: 'Deep red sorghum pap loaded with iron and essential minerals. Perfect for nursing mothers and weaning toddlers.',
+                nutrition: 'High Bioavailable Iron, Protein, Calcium, Antioxidants.',
+                ingredients: '100% Red Guinea Corn (Sorghum), Purified Water.'
+            },
+            {
+                id: 'p4',
+                category: 'fortified',
+                name: 'Nutri-Fortified Spiced Pap (Ginger & Clove)',
+                price: 2000,
+                rating: 4.9,
+                badge: 'Digestive Blend',
+                image: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80',
+                description: 'A soothing digestif blend of corn infused with natural ginger and clove extracts to stimulate appetite and ease digestion.',
+                nutrition: 'Vitamin C, Natural Anti-inflammatory Enzymes, Fiber.',
+                ingredients: 'White & Yellow Maize, Fresh Ginger Root, African Cloves.'
+            }
+        ];
 
-function book(){
-    document.getElementById('modal').style.display='flex';
-}
+        // Blog Database
+        const blogArticles = [
+            {
+                title: "How to Make Lump-Free Smooth Pap with Crunchy Akara",
+                category: "Recipes",
+                date: "October 24, 2026",
+                content: `
+                    <h4 class="font-bold text-lg text-brand-greendark mb-2">Mastering the Weekend Nigerian Breakfast</h4>
+                    <p class="text-sm text-gray-600 mb-4">Nothing pairs better than smooth, warm pap and golden crispy Akara. Here is how to prepare Nourishpap with zero lumps:</p>
+                    <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700 mb-4">
+                        <li>Mix 3 tablespoons of Nourishpap paste with cold water in a bowl until smooth.</li>
+                        <li>Pour boiling water slowly into the paste while stirring continuously in one direction.</li>
+                        <li>Watch it thicken into a smooth, silky consistency. Cover for 1 minute before serving.</li>
+                    </ol>
+                `
+            },
+            {
+                title: "Nutritional Benefits of Sorghum Pap for Nursing Mothers & Toddlers",
+                category: "Infant & Maternal",
+                date: "October 18, 2026",
+                content: `
+                    <h4 class="font-bold text-lg text-brand-greendark mb-2">Why Sorghum (Guinea Corn) is a Superfood</h4>
+                    <p class="text-sm text-gray-600 mb-4">Red Sorghum Pap (Ogi Baba) has been used traditionally for generations to support lactation and early childhood development.</p>
+                    <ul class="list-disc list-inside space-y-2 text-sm text-gray-700 mb-4">
+                        <li><strong>High Bioavailable Iron:</strong> Fights anemia during post-partum recovery.</li>
+                        <li><strong>Natural Lactation Booster:</strong> Promotes breast milk production.</li>
+                        <li><strong>Gentle Weaning Food:</strong> Easy on sensitive toddler tummies.</li>
+                    </ul>
+                `
+            },
+            {
+                title: "How We Guarantee 100% Grit and Sand Free Pap",
+                category: "Safety & Quality",
+                date: "October 10, 2026",
+                content: `
+                    <h4 class="font-bold text-lg text-brand-greendark mb-2">Our ISO & NAFDAC Standard Processing</h4>
+                    <p class="text-sm text-gray-600 mb-4">Grit in pap is caused by unwashed grains and stone contamination. Nourishpap solves this through:</p>
+                    <p class="text-sm text-gray-700 mb-2"><strong>1. Mechanical Gravity Destoning:</strong> Isolating grains from heavy particles and stones.</p>
+                    <p class="text-sm text-gray-700 mb-2"><strong>2. Triple RO Filtration Washing:</strong> Washing grains thoroughly three times.</p>
+                    <p class="text-sm text-gray-700"><strong>3. Sealed Hygienic Tubs:</strong> Zero human hand contact during packaging.</p>
+                `
+            }
+        ];
 
-function closeModal(){
-    document.getElementById('modal').style.display='none';
-}
-</script>
+        let cart = [];
+
+        // Render Initial Products
+        document.addEventListener("DOMContentLoaded", () => {
+            renderProducts('all');
+        });
+
+        function renderProducts(filter) {
+            const container = document.getElementById('productsGrid');
+            container.innerHTML = '';
+
+            const filtered = filter === 'all' 
+                ? productsData 
+                : productsData.filter(p => p.category === filter);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-all border border-amber-100 flex flex-col justify-between group";
+                card.innerHTML = `
+                    <div>
+                        <div class="relative rounded-2xl overflow-hidden h-48 mb-4 bg-amber-50">
+                            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/0C5E32/FFFFFF?text=${encodeURIComponent(p.name)}'">
+                            <span class="absolute top-3 left-3 bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded-full shadow">${p.badge}</span>
+                            <button onclick="openProductModal('${p.id}')" class="absolute bottom-3 right-3 bg-white/90 hover:bg-white text-gray-800 text-xs font-bold px-3 py-1.5 rounded-full shadow flex items-center space-x-1">
+                                <i class="fa-solid fa-eye text-brand-green"></i>
+                                <span>Details</span>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center justify-between text-xs text-amber-600 font-bold mb-1">
+                            <span><i class="fa-solid fa-star text-amber-400"></i> ${p.rating} Rating</span>
+                            <span class="text-gray-400">500g Pack</span>
+                        </div>
+
+                        <h3 class="font-serif font-bold text-lg text-brand-greendark mb-1">${p.name}</h3>
+                        <p class="text-xs text-gray-500 line-clamp-2 mb-4">${p.description}</p>
+                    </div>
+
+                    <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-wider block">Price</span>
+                            <span class="font-extrabold text-lg text-brand-greendark">₦${p.price.toLocaleString()}</span>
+                        </div>
+                        <button onclick="addToCart('${p.id}')" class="px-4 py-2.5 rounded-xl bg-brand-green text-white text-xs font-bold hover:bg-brand-greendark shadow transition-all flex items-center space-x-1">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Add</span>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterProducts(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-green', 'text-white', 'shadow');
+                btn.classList.add('bg-white', 'text-gray-700');
+            });
+            event.target.classList.remove('bg-white', 'text-gray-700');
+            event.target.classList.add('bg-brand-green', 'text-white', 'shadow');
+            renderProducts(category);
+        }
+
+        // Shopping Cart Operations
+        function addToCart(productId) {
+            const product = productsData.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartUI();
+            toggleCartDrawer(true);
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cartBadge');
+            const container = document.getElementById('cartItemsContainer');
+            const subtotalEl = document.getElementById('cartSubtotal');
+            const totalEl = document.getElementById('cartTotal');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            badge.innerText = totalItems;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-gray-400 space-y-3">
+                        <i class="fa-solid fa-basket-shopping text-4xl text-gray-300"></i>
+                        <p class="text-sm">Your basket is currently empty.</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = '';
+                cart.forEach(item => {
+                    const el = document.createElement('div');
+                    el.className = "flex items-center space-x-3 bg-brand-cream p-3 rounded-xl border border-amber-200/60";
+                    el.innerHTML = `
+                        <img src="${item.image}" class="w-14 h-14 rounded-lg object-cover">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-xs text-brand-greendark">${item.name}</h4>
+                            <p class="text-xs text-brand-gold font-bold mt-0.5">₦${(item.price * item.quantity).toLocaleString()}</p>
+                            <div class="flex items-center space-x-2 mt-1">
+                                <button onclick="changeQty('${item.id}', -1)" class="w-5 h-5 bg-white rounded border border-gray-300 text-xs font-bold text-gray-700">-</button>
+                                <span class="text-xs font-bold">${item.quantity}</span>
+                                <button onclick="changeQty('${item.id}', 1)" class="w-5 h-5 bg-white rounded border border-gray-300 text-xs font-bold text-gray-700">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart('${item.id}')" class="text-gray-400 hover:text-red-500 p-1">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
+                    `;
+                    container.appendChild(el);
+                });
+            }
+
+            subtotalEl.innerText = `₦${subtotal.toLocaleString()}`;
+            totalEl.innerText = `₦${subtotal.toLocaleString()}`;
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCartUI();
+        }
+
+        function toggleCartDrawer(open) {
+            const drawer = document.getElementById('cartDrawer');
+            const backdrop = document.getElementById('cartDrawerBackdrop');
+            if (open === true || drawer.classList.contains('translate-x-full')) {
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('hidden');
+            }
+        }
+
+        function triggerCheckout() {
+            if (cart.length === 0) {
+                alert('Your basket is empty! Please add products before checking out.');
+                return;
+            }
+            alert('Connecting to Paystack / Flutterwave Gateway...\nTotal Order Amount: ' + document.getElementById('cartTotal').innerText);
+        }
+
+        // Modals Logic
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        function openProductModal(id) {
+            const p = productsData.find(item => item.id === id);
+            if (!p) return;
+
+            document.getElementById('modalProductImg').src = p.image;
+            document.getElementById('modalProductTitle').innerText = p.name;
+            document.getElementById('modalProductBadge').innerText = p.badge;
+            document.getElementById('modalProductPrice').innerText = `₦${p.price.toLocaleString()}`;
+            document.getElementById('modalProductDesc').innerText = p.description;
+            document.getElementById('modalProductNutrition').innerText = p.nutrition;
+            document.getElementById('modalProductIngredients').innerText = p.ingredients;
+            
+            const btn = document.getElementById('modalAddToCartBtn');
+            btn.onclick = () => {
+                addToCart(p.id);
+                closeProductModal();
+            };
+
+            document.getElementById('productModalBackdrop').classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModalBackdrop').classList.add('hidden');
+        }
+
+        function openBlogModal(index) {
+            const article = blogArticles[index];
+            if (!article) return;
+
+            document.getElementById('blogModalContent').innerHTML = `
+                <span class="bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded-full uppercase">${article.category}</span>
+                <p class="text-xs text-gray-400 mt-2 mb-1">${article.date}</p>
+                <h3 class="font-serif text-2xl font-bold text-brand-greendark mb-4">${article.title}</h3>
+                ${article.content}
+            `;
+            document.getElementById('blogModalBackdrop').classList.remove('hidden');
+        }
+
+        function closeBlogModal() {
+            document.getElementById('blogModalBackdrop').classList.add('hidden');
+        }
+
+        function handleB2BSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for your B2B wholesale inquiry! Our commercial account team will respond within 2 hours.');
+            document.getElementById('b2bForm').reset();
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for contacting Nourishpap Foods! Your message has been received.');
+            e.target.reset();
+        }
+
+        function downloadB2BBrochure() {
+            alert('Downloading Nourishpap Foods Official B2B Catalog & Price List (PDF)...');
+        }
+    </script>
 
 </body>
 </html>
